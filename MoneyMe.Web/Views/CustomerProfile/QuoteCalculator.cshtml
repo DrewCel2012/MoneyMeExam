@@ -1,0 +1,74 @@
+﻿@model MoneyMe.Model.DataTransferObjects.CustomerProfileDto
+
+@{
+    ViewData["Title"] = "Quote Calculator";
+}
+
+<h1>Quote Calculator</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="QuoteCalculator">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="IsActive" />
+
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label"></label>
+                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountRequired" class="control-label"></label>
+                <input asp-for="AmountRequired" type="range" class="form-range" min="@Model.LoanApplicationDetails?.AmountMin" max="@Model.LoanApplicationDetails?.AmountMax" step="1" />
+                <b><div class="amountvalue">$ @Model.AmountRequired</div></b>
+            </div>
+            <div class="form-group">
+                <label asp-for="Term" class="control-label"></label>
+                <input asp-for="Term" type="range" class="form-range" min="@Model.LoanApplicationDetails?.TermMin" max="@Model.LoanApplicationDetails?.TermMax" step="1" />
+                <b><div class="termvalue">@Model.Term Month(s)</div></b>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group"><br /></div>
+            <div class="form-group">
+                <input type="submit" value="Calculate Quote" class="btn btn-primary" /> |
+                <a asp-action="Index">Back To Home</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/custom/customerprofile.js"></script>
+}

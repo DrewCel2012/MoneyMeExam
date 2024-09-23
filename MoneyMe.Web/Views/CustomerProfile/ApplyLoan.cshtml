@@ -1,0 +1,88 @@
+﻿@model MoneyMe.Model.DataTransferObjects.LoanApplicationDto
+
+@{
+    ViewData["Title"] = "Apply Loan";
+}
+
+<h1>Your Quote</h1>
+<hr />
+
+<div>
+    <div class="ValidationMessage">
+        @Html.ValidationMessage("ApplyLoanErrorMessage")
+    </div>
+
+    <h4>Your information:</h4>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+    </dl>
+
+    <h4>Finance details:</h4>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AmountRequired)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AmountRequired)
+        </dd>
+        <dt class="col-sm-2">
+            --------------------
+        </dt>
+        <dd class="col-sm-10">
+            over 12 months
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Repayment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Repayment)
+        </dd>
+        <dt class="col-sm-2">
+            --------------------
+        </dt>
+        <dd class="col-sm-10">
+            monthly
+        </dd>
+    </dl>
+
+    <form asp-action="ApplyLoan">
+        <input type="hidden" asp-for="CustomerProfileId" />
+        <input type="hidden" asp-for="ProductId" />
+        <input type="hidden" asp-for="Repayment" />
+        <input type="hidden" asp-for="TotalRepayment" />
+        <input type="hidden" asp-for="AmountRequired" />
+        <input type="hidden" asp-for="Term" />
+        <input type="hidden" asp-for="Mobile" />
+        <input type="hidden" asp-for="Email" />
+        <input type="hidden" asp-for="DateOfBirth" />
+        <input type="hidden" asp-for="FullName" />
+
+        <input type="submit" value="Apply Now" class="btn btn-danger" /> |
+        <a asp-action="QuoteCalculator" asp-route-id="@Model.CustomerProfileId">Back To Quote Calculator</a> |
+        <a asp-action="Index">Back To Home</a>
+    </form>
+</div>
